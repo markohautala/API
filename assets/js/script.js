@@ -10,11 +10,15 @@ document.getElementById("status").addEventListener("click", e => getStatus(e));
 document.getElementById("submit").addEventListener("click", e => postForm(e));
 
 async function postForm(e) {
-    const form = new FormData(document.getElementById("checksform"));
+    const form = new FormData(document.getElementById("checksform")); // Create a new FormData object from the form
 
-    for (let entry of form.entries()) {
-        console.log(entry);
-    }
+    const response = await fetch(API_URL, {
+                        method: "POST",
+                        headers: {
+                                    "Authorization": API_KEY,
+                                 },
+                        body: form  // Pass the form data to the request body
+                        })
 }
 
 async function getStatus(e) {
